@@ -11,6 +11,40 @@
   </head>
 
   <body>
-    <%= yield %>
+      <div id="navbar">
+      <ul class="nav navbar-nav">
+        <% if current_user %>
+          <li><%= link_to 'Secret Page', secret_path %></li>
+        <% else %>
+          <li><%= link_to 'Sign Up', sign_up_path %></li>
+          <li><%= link_to 'Log In', log_in_path %></li>
+        <% end %>
+      </ul>
+      <% if current_user %>
+        <ul class="nav navbar-nav pull-right">
+          <li><span><%= current_user.name %></span></li>
+          <li><%= link_to 'Log Out', log_out_path, method: :delete %></li>
+        </ul>
+      <% end %>
+      <div class="col-sm-3 well well-sm">
+  <h3>Currently active users:</h3>
+  <ul>
+    <% current_users.each do |user| %>
+      <li><%= user.name %></li>
+    <% end %>
+  </ul>
+</div>
+    </div>
+
+
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>">
+          <%= value %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

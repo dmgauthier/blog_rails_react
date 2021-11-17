@@ -58,3 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'react-rails'
 
 gem 'sorcery'
+
+gem 'validates_email_format_of'
+
+gem 'delayed_job_active_record'
